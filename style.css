@@ -1470,6 +1470,31 @@ a.contact-value:hover { color: var(--accent); }
 .toast.error { border-color: rgba(232,85,85,.4); background: rgba(232,85,85,.12); color: var(--danger); }
 
 /* =========================================
+   PHOTO TIP & HINTS
+   ========================================= */
+.photo-tip {
+  display: flex;
+  gap: 12px;
+  background: rgba(232,160,69,.07);
+  border: 1px solid rgba(232,160,69,.2);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.photo-tip-icon { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+.photo-tip-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.photo-tip-text strong { display: block; color: var(--accent); margin-bottom: 4px; font-size: 13px; }
+.photo-tip-text p { margin: 0; }
+
+.tip-label {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 400;
+  opacity: .8;
+  font-style: italic;
+}
+
+/* =========================================
    SCROLL ANIMATIONS
    ========================================= */
 .reveal {
