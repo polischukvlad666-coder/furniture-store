@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Мебель на заказ — стильная и качественная мебель с доставкой. Диваны, кровати, кухни, шкафы и многое другое под заказ." />
+  <title>МебельПро — Мебель на предзаказ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<header class="header" id="header">
+  <div class="header-inner container">
+    <a href="#" class="logo" id="site-logo-link">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text" id="site-name-display">МебельПро</span>
+    </a>
+    <nav class="nav" id="main-nav">
+      <a href="#catalog" class="nav-link">Каталог</a>
+      <a href="#how-it-works" class="nav-link">Как это работает</a>
+      <a href="#about" class="nav-link">О нас</a>
+      <a href="#contacts" class="nav-link">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-outline" id="order-btn" onclick="scrollToSection('catalog')">Сделать заказ</button>
+      <button class="hamburger" id="hamburger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#catalog" class="mobile-nav-link" onclick="closeMobileMenu()">Каталог</a>
+  <a href="#how-it-works" class="mobile-nav-link" onclick="closeMobileMenu()">Как это работает</a>
+  <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">О нас</a>
+  <a href="#contacts" class="mobile-nav-link" onclick="closeMobileMenu()">Контакты</a>
+</div>
+
+<!-- ========== ГЕРОЙ ========== -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">✦ Мебель под предзаказ</div>
+    <h1 class="hero-title" id="hero-title">Создайте интерьер<br/><span class="gradient-text">своей мечты</span></h1>
+    <p class="hero-subtitle" id="hero-subtitle">Выбирайте из нашего каталога — мы привезём именно то, что вам нужно. Качественная мебель от проверенных производителей.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="scrollToSection('catalog')">Смотреть каталог</button>
+      <button class="btn btn-ghost" onclick="scrollToSection('how-it-works')">Как это работает</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat" id="stat-1">
+        <span class="stat-num" id="stat-num-1">500+</span>
+        <span class="stat-label" id="stat-label-1">Позиций</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat" id="stat-2">
+        <span class="stat-num" id="stat-num-2">14 дней</span>
+        <span class="stat-label" id="stat-label-2">Доставка</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat" id="stat-3">
+        <span class="stat-num" id="stat-num-3">1 000+</span>
+        <span class="stat-label" id="stat-label-3">Довольных клиентов</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Листайте вниз</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ========== КАТАЛОГ ========== -->
+<section class="catalog-section" id="catalog">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Наши товары</span>
+      <h2 class="section-title">Каталог мебели</h2>
+      <p class="section-subtitle">Всё, что вы видите здесь, доступно под предзаказ. Выберите понравившийся товар и оставьте заявку.</p>
+    </div>
+
+    <!-- Фильтры по категориям -->
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-cat="all" onclick="filterCatalog('all', this)">Все</button>
+    </div>
+
+    <!-- Поиск -->
+    <div class="search-bar">
+      <input type="text" class="search-input" id="search-input" placeholder="Поиск по каталогу..." oninput="searchProducts(this.value)" />
+      <span class="search-icon">⌕</span>
+    </div>
+
+    <!-- Сетка товаров -->
+    <div class="products-grid" id="products-grid">
+      <!-- Заполняется динамически -->
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <div class="empty-icon">🛋️</div>
+      <h3>Товары не найдены</h3>
+      <p>Попробуйте изменить параметры поиска</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== КАК ЭТО РАБОТАЕТ ========== -->
+<section class="how-section" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Просто и удобно</span>
+      <h2 class="section-title">Как сделать заказ</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">🔍</div>
+        <h3>Выберите товар</h3>
+        <p>Просмотрите каталог и выберите понравившуюся мебель. Уточните размеры, цвет и материал.</p>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">📝</div>
+        <h3>Оставьте заявку</h3>
+        <p>Заполните форму с вашими контактами. Мы свяжемся с вами в течение 2 часов для уточнения деталей.</p>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🚚</div>
+        <h3>Получите мебель</h3>
+        <p>После оплаты мы привозим товар под заказ. Среднее время доставки — 7–14 рабочих дней.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== О НАС ========== -->
+<section class="about-section" id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <span class="section-badge">О нас</span>
+      <h2 class="section-title" id="about-title">Мы работаем<br/>для вашего комфорта</h2>
+      <p class="about-desc" id="about-desc">Наша компания специализируется на поставке качественной мебели под заказ. Мы сотрудничаем только с проверенными производителями и гарантируем соответствие товара тому, что вы видите в каталоге.</p>
+      <ul class="about-list">
+        <li><span class="check-icon">✓</span> Гарантия качества на все товары</li>
+        <li><span class="check-icon">✓</span> Индивидуальный подход к каждому клиенту</li>
+        <li><span class="check-icon">✓</span> Прозрачное ценообразование</li>
+        <li><span class="check-icon">✓</span> Поддержка после покупки</li>
+      </ul>
+    </div>
+    <div class="about-image-wrap">
+      <div class="about-image-card">
+        <div class="about-img-placeholder">🏠</div>
+        <div class="about-badge-float">
+          <span class="badge-num" id="about-badge-num">5</span>
+          <span class="badge-text">лет на рынке</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== КОНТАКТЫ ========== -->
+<section class="contacts-section" id="contacts">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Связаться с нами</span>
+      <h2 class="section-title">Остались вопросы?</h2>
+      <p class="section-subtitle">Заполните форму и мы перезвоним вам в ближайшее время</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Телефон</div>
+            <a class="contact-value" id="contact-phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <a class="contact-value" id="contact-email" href="mailto:info@mebelpro.ru">info@mebelpro.ru</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Адрес</div>
+            <span class="contact-value" id="contact-address">г. Москва, ул. Примерная, 1</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Режим работы</div>
+            <span class="contact-value" id="contact-hours">Пн-Пт: 9:00 — 18:00</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" onsubmit="submitContactForm(event)">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input type="text" class="form-input" id="cf-name" placeholder="Иван Иванов" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input type="tel" class="form-input" id="cf-phone" placeholder="+7 (___) ___-__-__" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Сообщение</label>
+          <textarea class="form-input form-textarea" id="cf-message" placeholder="Опишите ваш запрос..." rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ФУТЕР ========== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-icon">⬡</span>
+      <span id="footer-site-name">МебельПро</span>
+    </div>
+    <p class="footer-copy" id="footer-copy">© 2024 МебельПро. Все права защищены.</p>
+    <button class="footer-admin-btn" onclick="openAdmin()">⚙</button>
+  </div>
+</footer>
+
+<!-- ========== МОДАЛКА ТОВАРА ========== -->
+<div class="modal-overlay" id="product-modal" onclick="closeProductModal(event)">
+  <div class="modal-card" id="product-modal-card">
+    <button class="modal-close" onclick="closeProductModal(null, true)">✕</button>
+    <div class="modal-img-wrap">
+      <img class="modal-img" id="modal-img" src="" alt="" />
+      <div class="modal-badge" id="modal-badge"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-category" id="modal-category"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <div class="modal-price-wrap">
+        <span class="modal-price" id="modal-price"></span>
+        <span class="modal-price-old" id="modal-price-old"></span>
+      </div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-meta" id="modal-meta"></div>
+      <button class="btn btn-primary btn-full" onclick="orderProduct()">Оформить предзаказ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== МОДАЛКА ЗАКАЗА ========== -->
+<div class="modal-overlay" id="order-modal" onclick="closeOrderModal(event)">
+  <div class="modal-card order-modal-card">
+    <button class="modal-close" onclick="closeOrderModal(null, true)">✕</button>
+    <h2 class="modal-title">Оформление предзаказа</h2>
+    <p class="order-modal-product" id="order-modal-product"></p>
+    <form class="contact-form" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label class="form-label">Ваше имя *</label>
+        <input type="text" class="form-input" id="om-name" placeholder="Иван Иванов" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Телефон *</label>
+        <input type="tel" class="form-input" id="om-phone" placeholder="+7 (___) ___-__-__" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Дополнительные пожелания</label>
+        <textarea class="form-input form-textarea" id="om-comment" placeholder="Цвет, размер, материал..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Отправить заявку</button>
+    </form>
+  </div>
+</div>
+
+<!-- ========== УВЕДОМЛЕНИЕ ========== -->
+<div class="toast" id="toast"></div>
+
+<!-- ========== АДМИН ПАНЕЛЬ ========== -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-header">
+      <h2 class="admin-title">⚙ Панель управления</h2>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- Авторизация -->
+    <div id="admin-login" class="admin-section">
+      <p class="admin-hint">Введите пароль для доступа к панели управления</p>
+      <div class="form-group">
+        <input type="password" class="form-input" id="admin-password" placeholder="Пароль" onkeydown="if(event.key==='Enter')adminLogin()" />
+      </div>
+      <button class="btn btn-primary btn-full" onclick="adminLogin()">Войти</button>
+      <p class="admin-hint" style="margin-top:10px;font-size:11px;opacity:.5;">Пароль по умолчанию: admin123</p>
+    </div>
+
+    <!-- Контент панели -->
+    <div id="admin-content" style="display:none;">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('products', this)">Товары</button>
+        <button class="admin-tab" onclick="switchAdminTab('settings', this)">Настройки сайта</button>
+        <button class="admin-tab" onclick="switchAdminTab('orders', this)">Заявки</button>
+      </div>
+
+      <!-- TAB: ТОВАРЫ -->
+      <div id="tab-products" class="admin-tab-content">
+        <div class="admin-toolbar">
+          <button class="btn btn-primary btn-sm" onclick="openProductEditor()">+ Добавить товар</button>
+          <input type="text" class="form-input admin-search" placeholder="Поиск..." oninput="adminSearchProducts(this.value)" />
+        </div>
+        <div class="admin-products-list" id="admin-products-list"></div>
+      </div>
+
+      <!-- TAB: НАСТРОЙКИ -->
+      <div id="tab-settings" class="admin-tab-content" style="display:none;">
+        <div class="settings-group">
+          <h3 class="settings-group-title">Основное</h3>
+          <div class="form-group">
+            <label class="form-label">Название сайта</label>
+            <input type="text" class="form-input" id="s-site-name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Заголовок главного экрана</label>
+            <input type="text" class="form-input" id="s-hero-title" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Подзаголовок главного экрана</label>
+            <textarea class="form-input form-textarea" id="s-hero-subtitle" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-group-title">Контакты</h3>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input type="text" class="form-input" id="s-phone" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-input" id="s-email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Адрес</label>
+            <input type="text" class="form-input" id="s-address" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Режим работы</label>
+            <input type="text" class="form-input" id="s-hours" />
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-group-title">Статистика (герой)</h3>
+          <div class="stats-editor-grid">
+            <div class="form-group">
+              <label class="form-label">Цифра 1</label>
+              <input type="text" class="form-input" id="s-stat1-num" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Подпись 1</label>
+              <input type="text" class="form-input" id="s-stat1-label" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Цифра 2</label>
+              <input type="text" class="form-input" id="s-stat2-num" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Подпись 2</label>
+              <input type="text" class="form-input" id="s-stat2-label" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Цифра 3</label>
+              <input type="text" class="form-input" id="s-stat3-num" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Подпись 3</label>
+              <input type="text" class="form-input" id="s-stat3-label" />
+            </div>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-group-title">О компании</h3>
+          <div class="form-group">
+            <label class="form-label">Заголовок</label>
+            <input type="text" class="form-input" id="s-about-title" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Описание</label>
+            <textarea class="form-input form-textarea" id="s-about-desc" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Лет на рынке</label>
+            <input type="text" class="form-input" id="s-about-years" />
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3 class="settings-group-title">Безопасность</h3>
+          <div class="form-group">
+            <label class="form-label">Новый пароль</label>
+            <input type="password" class="form-input" id="s-new-password" placeholder="Оставьте пустым для сохранения текущего" />
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" onclick="saveSettings()">Сохранить настройки</button>
+      </div>
+
+      <!-- TAB: ЗАЯВКИ -->
+      <div id="tab-orders" class="admin-tab-content" style="display:none;">
+        <div class="admin-toolbar">
+          <button class="btn btn-sm btn-outline" onclick="clearOrders()">Очистить все</button>
+        </div>
+        <div id="orders-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== РЕДАКТОР ТОВАРА ========== -->
+<div class="modal-overlay" id="product-editor-overlay" onclick="closeProductEditor(event)">
+  <div class="modal-card product-editor-card">
+    <button class="modal-close" onclick="closeProductEditor(null,true)">✕</button>
+    <h2 class="modal-title" id="editor-title">Добавить товар</h2>
+    <div class="editor-form">
+      <input type="hidden" id="edit-id" />
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Название *</label>
+          <input type="text" class="form-input" id="edit-name" placeholder="Диван Модерн" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Категория *</label>
+          <input type="text" class="form-input" id="edit-category" placeholder="Диваны" list="category-list" />
+          <datalist id="category-list"></datalist>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Цена (руб.) *</label>
+          <input type="number" class="form-input" id="edit-price" placeholder="45000" min="0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Старая цена (руб.)</label>
+          <input type="number" class="form-input" id="edit-old-price" placeholder="55000" min="0" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание</label>
+        <textarea class="form-input form-textarea" id="edit-desc" placeholder="Описание товара..." rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Характеристики (каждая с новой строки, формат: Размер: 200x90)</label>
+        <textarea class="form-input form-textarea" id="edit-specs" placeholder="Материал: Кожа&#10;Размер: 200x90x80 см&#10;Цвет: Серый" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Изображение</label>
+        <div class="image-upload-area" id="image-upload-area" onclick="document.getElementById('edit-image-file').click()">
+          <input type="file" id="edit-image-file" accept="image/*" style="display:none;" onchange="handleImageUpload(event)" />
+          <div class="upload-placeholder" id="upload-placeholder">
+            <div class="upload-icon">📷</div>
+            <div>Нажмите для загрузки фото</div>
+            <div class="upload-hint">JPG, PNG, WEBP до 5 МБ</div>
+          </div>
+          <img id="edit-image-preview" class="edit-image-preview" style="display:none;" />
+        </div>
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
+          <span style="opacity:.6;font-size:12px;">или вставьте URL:</span>
+          <input type="text" class="form-input" id="edit-image-url" placeholder="https://..." style="flex:1;" oninput="previewImageUrl(this.value)" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Метка (необязательно)</label>
+          <input type="text" class="form-input" id="edit-badge" placeholder="Хит / Новинка / Акция" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Статус</label>
+          <select class="form-input" id="edit-status">
+            <option value="active">Активен (показывать)</option>
+            <option value="hidden">Скрыт (не показывать)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="closeProductEditor(null,true)">Отмена</button>
+        <button class="btn btn-primary" onclick="saveProduct()">Сохранить товар</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
